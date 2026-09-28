@@ -1,0 +1,20 @@
+NITROX-SAULD — VERSÃO 3 / PREPARAÇÃO ANDROID
+
+A versão inclui:
+- Interface mobile
+- Catálogo e busca
+- Carrinho
+- Pedido pelo WhatsApp (17) 99678-4644
+- Endereço Rua Miguel Antônio de Rezende
+- Horário 7:00 às 17:30
+- Área administrativa protegida por login
+- Cadastro, edição e exclusão de produtos
+- Dados salvos localmente
+
+ACESSO ADMIN DE TESTE
+Usuário: admin
+Senha: nitrox123
+
+IMPORTANTE: essa senha é apenas para protótipo. Antes de publicar, deve ser trocada por autenticação segura em servidor.
+
+Para gerar um APK final/publicável, esta versão precisa ser empacotada em Android (por exemplo, com um projeto Android/Capacitor) e configurada para assinatura da loja.

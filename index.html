@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090909">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Nitrox-Sauld</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;background:#080808;color:#fff;font-family:Arial,sans-serif}
+body{min-height:100vh}.app{max-width:520px;margin:auto;min-height:100vh;padding-bottom:80px}
+header{padding:18px 16px 13px;background:#0e0e0e;position:sticky;top:0;z-index:5;border-bottom:1px solid #242424}
+.logo{font-size:27px;font-weight:900;font-style:italic}.logo span{color:#ef1820}.tag{font-size:9px;letter-spacing:3px;color:#aaa;margin-top:2px}
+.search{width:100%;margin-top:13px;padding:13px 15px;border-radius:24px;border:1px solid #303030;background:#191919;color:#fff;outline:none}
+.hero{margin:15px;padding:22px;border-radius:19px;background:linear-gradient(135deg,#410506,#101010 70%);border:1px solid #5a1012}
+.hero h1{font-size:25px;margin:0 0 7px}.hero p{color:#d1d1d1;line-height:1.4}.btn{background:#ef1820;color:#fff;border:0;border-radius:11px;padding:12px 17px;font-weight:800}
+h2{font-size:18px;margin:21px 15px 12px}.cats{display:flex;gap:9px;padding:0 15px;overflow:auto}.cat{min-width:91px;background:#161616;border:1px solid #292929;border-radius:14px;text-align:center;padding:13px 8px;font-size:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:0 15px}.card{background:#151515;border:1px solid #292929;border-radius:15px;overflow:hidden}.pic{height:125px;background:linear-gradient(145deg,#282828,#090909);display:flex;align-items:center;justify-content:center;font-size:47px}.info{padding:11px}.name{font-weight:800;font-size:14px}.desc{font-size:11px;color:#aaa;line-height:1.3;margin-top:3px}.price{font-size:18px;font-weight:900;margin:8px 0}.buy{width:100%;padding:9px;border:0;border-radius:9px;background:#ef1820;color:#fff;font-weight:800}
+.store{margin:0 15px;background:#151515;border:1px solid #292929;border-radius:15px;padding:15px;line-height:1.7}.muted{color:#aaa;font-size:12px}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);max-width:520px;width:100%;height:70px;background:#111;border-top:1px solid #292929;display:flex;justify-content:space-around;z-index:10}
+nav button{background:none;border:0;color:#aaa;font-size:11px}.active{color:#ef1820!important}
+.panel{display:none;position:fixed;inset:0;background:#090909;z-index:30;max-width:520px;margin:auto;padding:18px;overflow:auto}.top{display:flex;justify-content:space-between;align-items:center}.close{background:#222;color:#fff;border:0;border-radius:9px;padding:9px}.input{width:100%;padding:12px;border:1px solid #303030;background:#161616;color:#fff;border-radius:9px;margin:5px 0}.row{display:flex;gap:7px}.row>*{flex:1}.admin{padding:13px 0;border-bottom:1px solid #292929;display:flex;justify-content:space-between;gap:8px}.danger{background:#691014;color:#fff;border:0;border-radius:8px;padding:8px}.small{font-size:11px;color:#aaa}
+.login{max-width:520px;margin:0 auto;padding:25px 18px;min-height:100vh;background:#090909}.loginLogo{text-align:center;padding:45px 0 30px}.loginLogo .logo{font-size:32px}.loginBox{background:#151515;border:1px solid #292929;border-radius:18px;padding:18px}.loginBox input{width:100%;padding:13px;margin:6px 0;border-radius:9px;border:1px solid #333;background:#0f0f0f;color:#fff}.err{color:#ff6268;font-size:12px;min-height:18px}
+</style>
+</head>
+<body>
+<div id="login" class="login" style="display:none">
+ <div class="loginLogo"><div class="logo">Nitrox<span>-Sauld</span></div><div class="tag">ÁREA ADMINISTRATIVA</div></div>
+ <div class="loginBox"><h2 style="margin:0 0 12px">Entrar</h2>
+ <input id="adminUser" placeholder="Usuário">
+ <input id="adminPass" type="password" placeholder="Senha">
+ <div id="err" class="err"></div><button class="btn" style="width:100%" onclick="login()">Entrar</button>
+ <p class="small">Senha inicial: nitrox123 — altere antes de usar comercialmente.</p></div>
+</div>
+
+<div id="app" class="app">
+<header><div class="logo">Nitrox<span>-Sauld</span></div><div class="tag">SOM AUTOMOTIVO</div><input id="search" class="search" placeholder="🔎 Buscar produtos..." oninput="render()"></header>
+<section class="hero"><h1>Potência que você sente. 🔊</h1><p>Produtos para seu projeto de som automotivo.</p><button class="btn" onclick="document.getElementById('produtos').scrollIntoView()">Ver produtos</button></section>
+<h2>Categorias</h2><div class="cats"><div class="cat">🔊<br>Subwoofers</div><div class="cat">⚡<br>Módulos</div><div class="cat">🎵<br>Falantes</div><div class="cat">🔌<br>Acessórios</div></div>
+<h2 id="produtos">Produtos</h2><div id="grid" class="grid"></div>
+<h2>Onde estamos</h2><div class="store"><b>📍 Rua Miguel Antônio de Rezende</b><br><span class="muted">🕐 7:00 às 17:30</span><br><br><button class="btn" onclick="wa()">📲 WhatsApp</button></div>
+</div>
+
+<nav id="nav"><button class="active" onclick="home()">⌂<br>Início</button><button onclick="document.getElementById('produtos').scrollIntoView()">▦<br>Produtos</button><button onclick="openCart()">🛒 <span id="count">0</span><br>Carrinho</button><button onclick="openAdmin()">⚙<br>Admin</button></nav>
+
+<div id="cartPanel" class="panel"><div class="top"><h1>Carrinho</h1><button class="close" onclick="closePanel('cartPanel')">✕</button></div><div id="cart"></div><h2 id="total"></h2><button class="btn" style="width:100%" onclick="finishOrder()">Finalizar pedido no WhatsApp</button></div>
+
+<div id="adminPanel" class="panel"><div class="top"><h1>Admin</h1><button class="close" onclick="logout()">Sair</button></div>
+<p class="small">Gerencie os produtos neste aparelho.</p>
+<input id="pname" class="input" placeholder="Nome do produto"><div class="row"><input id="pprice" class="input" type="number" step="0.01" placeholder="Preço"><input id="pcat" class="input" placeholder="Categoria"></div>
+<input id="pdesc" class="input" placeholder="Descrição"><input id="picon" class="input" placeholder="Emoji (ex.: 🔊)">
+<button id="saveBtn" class="btn" style="margin-top:6px" onclick="saveProduct()">Adicionar produto</button>
+<button id="cancelBtn" class="close" style="display:none;margin-left:5px" onclick="clearForm()">Cancelar</button>
+<h2>Produtos cadastrados</h2><div id="adminList"></div></div>
+
+<script>
+const PHONE="5517996784644", KEY="nitrox_products_v3", CARTKEY="nitrox_cart_v3";
+let products=JSON.parse(localStorage.getItem(KEY)||"null")||[
+{id:1,name:"Ultravox 3K7",price:1299.90,cat:"Subwoofers",desc:"Muito forte, alta qualidade e ótimo para graves fortes e competição.",icon:"🔊"},
+{id:2,name:"Taramps HD 3000",price:899.90,cat:"Módulos",desc:"Potência para seu sistema.",icon:"⚡"}];
+let cart=JSON.parse(localStorage.getItem(CARTKEY)||"[]"), editing=null, adminLogged=false;
+const $=id=>document.getElementById(id), money=v=>Number(v).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+function persist(){localStorage.setItem(KEY,JSON.stringify(products));localStorage.setItem(CARTKEY,JSON.stringify(cart))}
+function render(){let q=$("search").value.toLowerCase();$("grid").innerHTML=products.filter(p=>(p.name+" "+p.cat).toLowerCase().includes(q)).map(p=>`<div class="card"><div class="pic">${p.icon||"🔊"}</div><div class="info"><div class="name">${p.name}</div><div class="desc">${p.cat} · ${p.desc||""}</div><div class="price">${money(p.price)}</div><button class="buy" onclick="add(${p.id})">Adicionar</button></div></div>`).join("")||"<p class='small'>Nenhum produto encontrado.</p>";$("count").textContent=cart.length}
+function add(id){cart.push(id);persist();render();alert("Produto adicionado!")}
+function openCart(){ $("cartPanel").style.display="block";let items=cart.map(id=>products.find(p=>p.id===id)).filter(Boolean);$("cart").innerHTML=items.length?items.map((p,i)=>`<div class="admin"><span>${p.icon||"🔊"} <b>${p.name}</b><br>${money(p.price)}</span><button class="danger" onclick="removeCart(${i})">Remover</button></div>`).join(""):"<p class='small'>Carrinho vazio.</p>";$("total").textContent="Total: "+money(items.reduce((s,p)=>s+p.price,0))}
+function removeCart(i){cart.splice(i,1);persist();openCart();render()}
+function closePanel(id){$(id).style.display="none"}
+function wa(){window.open("https://wa.me/"+PHONE,"_blank")}
+function finishOrder(){let items=cart.map(id=>products.find(p=>p.id===id)).filter(Boolean);if(!items.length)return alert("Carrinho vazio.");let msg="Olá! Quero fazer um orçamento na Nitrox-Sauld:%0A"+items.map(p=>"- "+p.name+" — "+money(p.price)).join("%0A");window.open("https://wa.me/"+PHONE+"?text="+msg,"_blank")}
+function openAdmin(){if(!adminLogged){$("login").style.display="block";$("app").style.display="none";$("nav").style.display="none";return}$("adminPanel").style.display="block";adminList()}
+function login(){if($("adminUser").value==="admin"&&$("adminPass").value==="nitrox123"){adminLogged=true;$("login").style.display="none";$("app").style.display="block";$("nav").style.display="flex";$("adminPanel").style.display="block";adminList();$("err").textContent=""}else $("err").textContent="Usuário ou senha incorretos."}
+function logout(){adminLogged=false;closePanel("adminPanel")}
+function adminList(){$("adminList").innerHTML=products.map(p=>`<div class="admin"><span><b>${p.name}</b><br><span class="small">${money(p.price)} · ${p.cat}</span></span><span><button class="close" onclick="editProduct(${p.id})">Editar</button> <button class="danger" onclick="deleteProduct(${p.id})">Excluir</button></span></div>`).join("")}
+function saveProduct(){let name=$("pname").value.trim(),price=Number($("pprice").value),cat=$("pcat").value.trim()||"Outros",desc=$("pdesc").value.trim(),icon=$("picon").value.trim()||"🔊";if(!name||!price)return alert("Informe nome e preço.");if(editing){let p=products.find(x=>x.id===editing);Object.assign(p,{name,price,cat,desc,icon})}else products.push({id:Date.now(),name,price,cat,desc,icon});persist();clearForm();render();adminList()}
+function editProduct(id){let p=products.find(x=>x.id===id);editing=id;$("pname").value=p.name;$("pprice").value=p.price;$("pcat").value=p.cat;$("pdesc").value=p.desc;$("picon").value=p.icon||"🔊";$("saveBtn").textContent="Salvar alterações";$("cancelBtn").style.display="inline-block"}
+function clearForm(){editing=null;$("pname").value=$("pprice").value=$("pcat").value=$("pdesc").value=$("picon").value="";$("saveBtn").textContent="Adicionar produto";$("cancelBtn").style.display="none"}
+function deleteProduct(id){if(confirm("Excluir este produto?")){products=products.filter(p=>p.id!==id);cart=cart.filter(x=>x!==id);persist();render();adminList()}}
+function home(){window.scrollTo({top:0,behavior:"smooth"})}
+render();
+</script></body></html>
